@@ -1,4 +1,8 @@
 import os
+import pathlib
+
+ruta_aplicativo = pathlib.Path().absolute()
+ruta_aplicativo = str(ruta_aplicativo)
 
 def printear_usuarios(pc, c=r'\c$\Users'):
     
@@ -17,10 +21,7 @@ def printear_usuarios(pc, c=r'\c$\Users'):
     with_s4 = [x for x in users if x.startswith(start_letter4)] 
 
     usuarios_pc = with_s1 + with_s2 + with_s3 + with_s4
-    
-    
     return(usuarios_pc)
-
 
 class color:
    PURPLE = '\033[95m'
@@ -33,6 +34,7 @@ class color:
    BOLD = '\033[1m'
    UNDERLINE = '\033[4m'
    END = '\033[0m'
+
 
 #Listas
 
@@ -47,6 +49,12 @@ usuarios_fallados = []
 
 #contador = 0
 
+
+ruta_archivos_inicio = (ruta_aplicativo + '\\' + 'prueba_aplicativo')
+
+
+
+
 for pc in pcs: #Este bucle itera la lista de pcs 
     
     try: #Control de errores pc
@@ -55,8 +63,8 @@ for pc in pcs: #Este bucle itera la lista de pcs
         usuarios_pc = printear_usuarios(pc, c)
         print('\n')
         print(color.BOLD + pc + color.END)
-        print(usuarios_pc)
-        print(len(usuarios_pc))
+        #print(usuarios_pc)
+        #print(len(usuarios_pc))
 
 
         for usuario in usuarios_pc: #Dentro de cada pc iteramos en los usuarios.
@@ -72,11 +80,27 @@ for pc in pcs: #Este bucle itera la lista de pcs
                         firma = '\AppData\Roaming\Microsoft\Firmas'
                         os.chdir(r'\\' + pc + c + "\\" + usuario + firma)
                         print(color.BOLD + "usuario: " + usuario + color.END)
-                        print(os.getcwd())  
+                        #print(os.getcwd())  
                         
-                        ruta_carpeta_destino = os.chdir(r'\\' + pc + c + "\\" + usuario + firma)
-                        print(ruta_carpeta_destino)
+                        ruta_archivos_destino = (r'\\' + pc + c + "\\" + usuario + firma)
+                        print("Ruta de red: " + ruta_archivos_destino)
+                        print("Ruta local: " + ruta_archivos_inicio) 
                         
+                        
+                        #shutil.copy(ruta_carpeta_inicio, ruta_carpeta_destino + "LCE.htm")
+                        #shutil.copy(ruta_carpeta_inicio, ruta_carpeta_destino + "LCE_archivos")
+                        
+                        
+                        try:
+                            os.chdir(ruta_archivos_inicio + "\\" + usuario)
+                            print(os.getcwd()) 
+                            print(os.listdir()) #Listado del directorio local  
+                                
+                        except:
+                            print("Falla compi usuario")
+                        
+                        
+                
                         #firma_compis, user_local, c_local, ruta_local = carpeta_local()
                         
                         #try:
@@ -94,6 +118,12 @@ for pc in pcs: #Este bucle itera la lista de pcs
                         #except:
                         #    print("falla")
                         
+                    
+                    
+                    
+                    
+                    
+                    
                     else:
                         firma = '\AppData\Roaming\Microsoft\Signatures'
                         os.chdir(r'\\' + pc + c + "\\" + usuario + firma)
@@ -111,4 +141,6 @@ for pc in pcs: #Este bucle itera la lista de pcs
         #print('\n' + "No se puede acceder al pc: "+ color.BOLD + pc + color.END)
         pc_fallados.append(pc)
 
-print(pc_fallados)
+
+
+
