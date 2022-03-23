@@ -38,13 +38,14 @@ class color:
 
 #Listas
 
-#pcs = ['pcs0346']
+pcs = ['pcs0389']
 
-pcs = ['pcs0345','pcs0346', 'pcs0347', 'pcs0348']
+#pcs = ['pcs0345','pcs0346', 'pcs0347', 'pcs0348']
+
 #usuarios = []
 c = r'\c$\Users'
 
-pc_fallados = []
+pc_desconectados = []
 usuarios_fallados = []  
 
 #contador = 0
@@ -138,9 +139,5 @@ for pc in pcs: #Este bucle itera la lista de pcs
             #contador +=1
                            
     except: #Con el primer for itereamos en los pcs, realizamos este control de errores para evitar perder tiempo a la hora de saber que no tenemos conexion al pc
-        #print('\n' + "No se puede acceder al pc: "+ color.BOLD + pc + color.END)
-        pc_fallados.append(pc)
-
-
-
-
+        print('\n' + "No se puede acceder al pc "+ color.BOLD + pc + color.END + " está desconectado")
+        pc_desconectados.append(pc)
