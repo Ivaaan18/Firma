@@ -1,0 +1,1 @@
+Este scrpt debe ejecutarse en el adm para que funcione por los permisos de administrador de dominio.
