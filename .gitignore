@@ -1,7 +1,8 @@
 .ipynb_checkpoints
-prueba_aplicativo
+*.xlsx
+*.csv
 biblioteca
-Firmas_compis/
-Firma.ipynb
+prueba_aplicativo
+firma.yml
+Prueba.*
 *.txt
-codigo.py
